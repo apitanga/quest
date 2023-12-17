@@ -14,9 +14,7 @@ jobs:
         run: npm ci
 
       - name: Build Docker image
-        uses: actions/build@v2
-        with:
-          dockerfile-path: Dockerfile
+        run: docker build -t ghcr.io/apitanga/quest:prod .
 
       - name: Tag the image
         run: docker tag quest:prod ghcr.io/apitanga/quest:prod
