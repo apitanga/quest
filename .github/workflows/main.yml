@@ -30,7 +30,7 @@ jobs:
      #   run: docker push gcr.io/quest-408401/quest:${{ github.sha }}
 
       - name: Fetch Terraform modules
-        run: terraform init
+        run: TFC_TOKEN=${{ secrets.TF_API_TOKEN }} terraform init
 
       - name: Deploy to Cloud Run
         run: terraform apply -auto-approve --target cloutrun
