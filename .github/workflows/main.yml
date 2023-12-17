@@ -17,21 +17,13 @@ jobs:
         uses: google-github-actions/auth@v2.0.0
         with: 
           credentials_json: ${{ secrets.GCP_SA_KEY }}
-          
-      - name: Set up Terraform Cloud Token
-        run: echo "TFC_TOKEN=${{ secrets.TFC_TOKEN }}" >> $GITHUB_ENV
- 
-      - name: Debug - Print environment variables
-        run: printenv
-      - name: Enable detailed Terraform logging
-        run: echo "TF_LOG=DEBUG" >> $GITHUB_ENV
 
      # - name: Push image to GCR
      #   run: docker push gcr.io/quest-408401/quest:${{ github.sha }}
 
       - name: Terraform Init
         env:
-          TFC_TOKEN: ${{ secrets.TF_API_TOKEN }}
+          TFC_TOKEN: ${{ secrets.TFC_TOKEN }}
         run: terraform init
 
       - name: Deploy to Cloud Run
