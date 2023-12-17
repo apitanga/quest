@@ -20,6 +20,9 @@ jobs:
 
      # - name: Push image to GCR
      #   run: docker push gcr.io/quest-408401/quest:${{ github.sha }}
+      - name: Terraform Version
+        run: terraform version
+
       - name: Set up Terraform Cloud Token
         run: echo "TFC_TOKEN=${{ secrets.TF_API_TOKEN }}" >> $GITHUB_ENV
         
