@@ -11,7 +11,7 @@ terraform {
 provider "google" {
   project = "quest-408401"
   region = "us-central1"
-  credentials = jsondecode(var.GOOGLE_CREDENTIALS)
+  credentials = jsondecode(sensitive(var.GOOGLE_CREDENTIALS))
 }
 
 # Artifact Registry Repository
