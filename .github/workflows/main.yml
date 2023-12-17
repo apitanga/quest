@@ -24,14 +24,14 @@ jobs:
         run: terraform version
 
       - name: Set up Terraform Cloud Token
-        run: echo "TFC_TOKEN=${{ secrets.TF_API_TOKEN }}" >> $GITHUB_ENV
+        run: echo "TF_TOKEN_app_terraform_io=${{ secrets.TF_API_TOKEN }}" >> $GITHUB_ENV
         
       - name: Check if TFC_TOKEN is set
         run: |
-          if [ -z "${TFC_TOKEN}" ]; then
-            echo "TFC_TOKEN is not set"
+          if [ -z "${TF_TOKEN_app_terraform_io}" ]; then
+            echo "TF_TOKEN_app_terraform_io is not set"
           else
-            echo "TFC_TOKEN is set"
+            echo "TF_TOKEN_app_terraform_io is set"
           fi
 
       - name: debug
@@ -39,11 +39,9 @@ jobs:
 
       - name: Terraform Init
         env:
-          TFC_TOKEN: ${{ secrets.TF_API_TOKEN }}
           TF_LOG: TRACE
-        run: |
-          export TFC_TOKEN=${{ secrets.TF_API_TOKEN }}
-          terraform init
+          TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
+        run: terraform init
 
       - name: Deploy to Cloud Run
         run: terraform apply -auto-approve --target cloutrun
