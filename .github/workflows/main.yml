@@ -24,6 +24,8 @@ jobs:
         run: echo "TFC_TOKEN=${{ secrets.TF_API_TOKEN }}" >> $GITHUB_ENV
 
       - name: Terraform Init
+        env:
+          TFC_TOKEN: ${{ secrets.TF_API_TOKEN }}
         run: terraform init
 
       - name: Deploy to Cloud Run
