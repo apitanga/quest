@@ -23,6 +23,8 @@ jobs:
  
       - name: Debug - Print environment variables
         run: printenv
+      - name: Enable detailed Terraform logging
+        run: echo "TF_LOG=DEBUG" >> $GITHUB_ENV
 
      # - name: Push image to GCR
      #   run: docker push gcr.io/quest-408401/quest:${{ github.sha }}
