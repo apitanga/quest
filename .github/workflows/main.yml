@@ -13,24 +13,15 @@ jobs:
       #- name: Build and tag Docker image
        # run: docker build -t gcr.io/quest-408401/quest:${{ github.sha }} .
 
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2.0.0
-        with: 
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-          
-      - name: Set up Terraform Google Cloud Authentication
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_PRIVATEKEY }}}
-
-     # - name: Push image to GCR
-     #   run: docker push gcr.io/quest-408401/quest:${{ github.sha }}
-
-      #- name: Set up Terraform Cloud Token
-      #  run: echo "TF_TOKEN_app_terraform_io=${{ secrets.TF_API_TOKEN }}" >> $GITHUB_ENV
+      #- name: Authenticate to Google Cloud
+      #  uses: google-github-actions/auth@v2.0.0
+      #  with: 
+      #    credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Terraform Init
         env:
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_PRIVATEKEY }}
         run: terraform init
 
       - name: Deploy to Cloud Run
