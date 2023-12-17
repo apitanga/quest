@@ -16,7 +16,7 @@ jobs:
              docker tag ghcr.io/apitanga/quest:prod ghcr.io/apitanga/quest:prod
 
       - name: Set up Google Cloud credentials
-        run: echo "${{ secrets.GCP_SA_KEY }}" > $HOME/gcp-key.json
+        run: echo "$GCP_SA_KEY" > $HOME/gcp-key.json
 
       - name: Authenticate to Google Cloud
         run: gcloud auth activate-service-account --key-file=$HOME/gcp-key.json
