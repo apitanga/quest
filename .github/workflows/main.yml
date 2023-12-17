@@ -10,11 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build Docker image
+      - name: Build and tag Docker image
         run: docker build -t ghcr.io/apitanga/quest:prod .
-
-      - name: Tag the image
-        run: docker tag quest:prod ghcr.io/apitanga/quest:prod
+             docker tag ghcr.io/apitanga/quest:prod ghcr.io/apitanga/quest:prod
 
       - name: Set up Google Cloud credentials
         run: echo "${{ secrets.GCP_SA_KEY }}" > $HOME/gcp-key.json
