@@ -24,7 +24,7 @@ jobs:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Push image to GCR (optional)
-        run: gcloud docker -- push ghcr.io/apitanga/quest:prod
+        run: gcloud docker -- push ghcr.io/apitanga/quest:${{ github.sha }}
 
       - name: Fetch Terraform modules
         run: terraform init
