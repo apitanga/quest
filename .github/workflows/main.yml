@@ -34,10 +34,15 @@ jobs:
             echo "TFC_TOKEN is set"
           fi
 
+      - name: debug
+        run: echo "${TFC_TOKEN}"
+
       - name: Terraform Init
         env:
           TFC_TOKEN: ${{ secrets.TF_API_TOKEN }}
-        run: terraform init
+        run: |
+          export TFC_TOKEN=${{ secrets.TF_API_TOKEN }}
+          terraform init
 
       - name: Deploy to Cloud Run
         run: terraform apply -auto-approve --target cloutrun
