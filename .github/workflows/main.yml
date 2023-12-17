@@ -10,8 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build and tag Docker image
-        run: docker build -t gcr.io/quest-408401/quest:${{ github.sha }} .
+      #- name: Build and tag Docker image
+       # run: docker build -t gcr.io/quest-408401/quest:${{ github.sha }} .
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2.0.0
@@ -20,7 +20,10 @@ jobs:
           
       - name: Set up Terraform Cloud Token
         run: echo "TFC_TOKEN=${{ secrets.TFC_TOKEN }}" >> $GITHUB_ENV
-  
+ 
+      - name: Debug - Print environment variables
+        run: printenv
+
      # - name: Push image to GCR
      #   run: docker push gcr.io/quest-408401/quest:${{ github.sha }}
 
