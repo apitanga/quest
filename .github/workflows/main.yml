@@ -20,26 +20,16 @@ jobs:
           
       - name: Set up Terraform Google Cloud Authentication
         run: |
-          echo "GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GCP_SA_KEY }}" >> $GITHUB_ENV
+          echo "GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GCP_PRIVATEKEY }}" >> $GITHUB_ENV
 
      # - name: Push image to GCR
      #   run: docker push gcr.io/quest-408401/quest:${{ github.sha }}
+     
       - name: Terraform Version
         run: terraform version
 
       - name: Set up Terraform Cloud Token
         run: echo "TF_TOKEN_app_terraform_io=${{ secrets.TF_API_TOKEN }}" >> $GITHUB_ENV
-        
-      - name: Check if TFC_TOKEN is set
-        run: |
-          if [ -z "${TF_TOKEN_app_terraform_io}" ]; then
-            echo "TF_TOKEN_app_terraform_io is not set"
-          else
-            echo "TF_TOKEN_app_terraform_io is set"
-          fi
-
-      - name: debug
-        run: echo "${TFC_TOKEN}"
 
       - name: Terraform Init
         env:
