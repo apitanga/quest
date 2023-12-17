@@ -29,8 +29,10 @@ jobs:
      # - name: Push image to GCR
      #   run: docker push gcr.io/quest-408401/quest:${{ github.sha }}
 
-      - name: Fetch Terraform modules
-        run: TFC_TOKEN=${{ secrets.TF_API_TOKEN }} terraform init
+      - name: Terraform Init
+        env:
+          TFC_TOKEN: ${{ secrets.TF_API_TOKEN }}
+        run: terraform init
 
       - name: Deploy to Cloud Run
         run: terraform apply -auto-approve --target cloutrun
