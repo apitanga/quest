@@ -11,9 +11,11 @@ terraform {
 provider "google" {
   project = "quest-408401"
   region = "us-central1"
-  credentials = jsondecode(sensitive(var.GOOGLE_CREDENTIALS))
+  credentials = var.GOOGLE_CREDENTIALS
 }
-
+variable "GOOGLE_CREDENTIALS" {
+default= ""
+}
 # Artifact Registry Repository
 resource "google_artifact_registry_repository" "docker_repo" {
   location      = "us-central1"
