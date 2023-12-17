@@ -25,4 +25,7 @@ jobs:
         run: terraform init
 
       - name: Deploy to Cloud Run
+        env:
+          TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_PRIVATEKEY }}
         run: terraform apply -auto-approve
