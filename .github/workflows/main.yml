@@ -22,6 +22,14 @@ jobs:
      #   run: docker push gcr.io/quest-408401/quest:${{ github.sha }}
       - name: Set up Terraform Cloud Token
         run: echo "TFC_TOKEN=${{ secrets.TF_API_TOKEN }}" >> $GITHUB_ENV
+        
+      - name: Check if TFC_TOKEN is set
+        run: |
+          if [ -z "${TFC_TOKEN}" ]; then
+            echo "TFC_TOKEN is not set"
+          else
+            echo "TFC_TOKEN is set"
+          fi
 
       - name: Terraform Init
         env:
