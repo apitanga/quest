@@ -35,8 +35,3 @@ jobs:
 
       - name: Deploy to Cloud Run
         run: terraform apply -auto-approve --target cloutrun
-
-workflows:
-  default:
-    jobs:
-      - build-and-deploy
