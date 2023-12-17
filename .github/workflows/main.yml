@@ -1,0 +1,45 @@
+name: CI/CD to Cloud Run
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Docker image
+        uses: actions/build@v2
+        with:
+          dockerfile-path: Dockerfile
+
+      - name: Tag the image
+        run: docker tag quest:prod ghcr.io/apitanga/quest:prod
+
+      - name: Set up Google Cloud credentials
+        run: echo "${{ secrets.GCP_SA_KEY }}" > $HOME/gcp-key.json
+
+      - name: Authenticate to Google Cloud
+        run: gcloud auth activate-service-account --key-file=$HOME/gcp-key.json
+
+      - name: Push image to GCR (optional)
+        run: gcloud docker -- push ghcr.io/apitanga/quest:prod
+
+      - name: Fetch Terraform modules
+        run: terraform init
+
+      - name: Deploy to Cloud Run
+        run: terraform apply -auto-approve --target cloutrun
+
+    env:
+      GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp_dir }}/gcloud-auth.json
+
+workflows:
+  default:
+    jobs:
+      - build-and-deploy
