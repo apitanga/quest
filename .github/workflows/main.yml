@@ -21,6 +21,15 @@ jobs:
       - name: Set up Terraform Google Cloud Authentication
         run: |
           echo "GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GCP_PRIVATEKEY }}" >> $GITHUB_ENV
+          
+      - name: Create GCP JSON key file
+        run: echo "${{ secrets.GCP_PRIVATEKEY }}" > $GITHUB_WORKSPACE/gcp-key.json
+        
+      - name: Set up Terraform Google Cloud Authentication
+        run: |
+          echo "GOOGLE_APPLICATION_CREDENTIALS=\${{ github.workspace }}/gcp-key.json" >> $GITHUB_ENV
+        env:
+           GCP_SA_KEY: ${{ secrets.GCP_PRIVATEKEY }}
 
      # - name: Push image to GCR
      #   run: docker push gcr.io/quest-408401/quest:${{ github.sha }}
