@@ -19,7 +19,9 @@ jobs:
         run: echo "${{ secrets.GCP_SA_KEY }}" > $HOME/gcp-key.json
 
       - name: Authenticate to Google Cloud
-        run: gcloud auth activate-service-account --key-file=$HOME/gcp-key.json
+        uses: google-github-actions/auth@v2.0.0
+        with: 
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Push image to GCR (optional)
         run: gcloud docker -- push ghcr.io/apitanga/quest:prod
