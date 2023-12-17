@@ -12,14 +12,11 @@ jobs:
 
       - name: Build and tag Docker image
         run: |
-             docker build -t ghcr.io/apitanga/quest:prod .
-             docker tag ghcr.io/apitanga/quest:prod ghcr.io/apitanga/quest:prod
+             docker build -t ghcr.io/apitanga/quest:${{ github.sha }} .
+             docker tag ghcr.io/apitanga/quest:${{ github.sha }} ghcr.io/apitanga/quest:${{ github.sha }}
 
       - name: Set up Google Cloud credentials
         run: echo "$GCP_SA_KEY" > $HOME/gcp-key.json
-
-      - name: Debug secret content
-        run: cat $HOME/gcp-key.json
 
       - name: Authenticate to Google Cloud
         run: gcloud auth activate-service-account --key-file=$HOME/gcp-key.json
