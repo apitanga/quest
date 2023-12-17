@@ -23,7 +23,7 @@ jobs:
 
       - name: Terraform Init
         env:
-          TFC_TOKEN: ${{ secrets.TFC_TOKEN }}
+          TF_API_TOKEN: ${{ secrets.TFC_TOKEN }}
         run: terraform init
 
       - name: Deploy to Cloud Run
