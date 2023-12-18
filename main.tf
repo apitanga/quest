@@ -26,12 +26,6 @@ resource "google_artifact_registry_repository" "docker_repo" {
     env = "production"
   }
 
-  # Get the repository URL as output
-  output "url" {
-    value = self.url
-  }
-}
-
 # Docker image to push
 resource "docker_image" "app_image" {
   name  = "gcr.io/${google.project}/${google_artifact_registry_repository.docker_repo.repository_id}:${github.sha}"
