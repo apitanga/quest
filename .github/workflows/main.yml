@@ -25,12 +25,10 @@ jobs:
       - name: Terraform Init
         env:
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
-          github_sha: $GITHUB_SHA
         run: terraform init
 
       - name: Deploy to Cloud Run
         env:
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-          github_sha: $GITHUB_SHA
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -var="github_sha=${{ github.sha }}"
