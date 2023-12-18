@@ -30,7 +30,7 @@ resource "google_artifact_registry_repository" "docker_repo" {
 
 # Docker image to push
 resource "docker_image" "app_image" {
-  name  = "gcr.io/${google.project}/${google_artifact_registry_repository.docker_repo.repository_id}:${github.sha}"
+  name  = "gcr.io/${google.project}/${google_artifact_registry_repository.docker_repo.repository_id}:${var.GITHUB_SHA}""
 
   build_context = "."
 
