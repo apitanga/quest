@@ -1,7 +1,12 @@
-cloud {
-  organization = "Pitangaville"
-  workspace = "quest"
+terraform {
+  cloud {
+    organization = "Pitangaville"
+    hostname = "app.terraform.io" # Optional; defaults to app.terraform.io
 
+    workspaces {
+      project = "quest"
+    }
+  }
 }
 
 # Provider configuration
