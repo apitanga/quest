@@ -5,6 +5,11 @@ terraform {
     workspaces {
       name = "quest"
     }
+    required_providers {
+      docker = {
+    version = "~> 4.6"
+    }
+    }
   }
 }
 
@@ -12,11 +17,6 @@ terraform {
 provider "google" {
   project = "quest-408401"
   region = "us-central1"
-}
-required_providers {
-  docker = {
-    version = "~> 4.6"
-  }
 }
 
 # Artifact Registry Repository
