@@ -26,7 +26,6 @@ variable "gcp_project" {
 variable "github_sha" {
   description = "GitHub SHA hash of the commit"
   type        = string
-  default     = env.github_sha
 }
 
 # Artifact Registry Repository
