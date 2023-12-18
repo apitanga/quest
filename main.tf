@@ -15,13 +15,14 @@ terraform {
     }
   }
 }
+
 # Declare variables
 variable "gcp_project" {
   description = "Google Cloud project ID"
   type        = string
   default     = "quest-408401"
-  }
 }
+
 # Artifact Registry Repository
 resource "google_artifact_registry_repository" "docker_repo" {
   location      = "us-central1"
