@@ -39,3 +39,50 @@ resource "google_artifact_registry_repository" "docker_repo" {
     app = "quest"
   }
 }
+
+# Deploy to Cloud Run
+resource "google_cloud_run_service" "default" {
+  name     = "my-service"
+  location = "us-central1"
+
+  template {
+    spec {
+      containers {
+        image = "gcr.io/${var.gcp_project}/quest:${var.github_sha}"
+      }
+    }
+  }
+}
+
+# Custom Domain and SSL Configuration
+
+variable "custom_domain" {
+  description = "The custom domain for the Cloud Run service"
+  type        = string
+  name        = "pomo.dev"
+}
+
+resource "google_cloud_run_domain_mapping" "default" {
+  location = "us-central1"
+  name     = var.custom_domain
+
+  metadata {
+    namespace = var.gcp_project
+}
+
+  spec {
+    route_name = google_cloud_run_service.default.name
+  }
+}
+
+resource "google_compute_managed_ssl_certificate" "default" {
+  name    = "my-ssl-cert"
+  managed {
+    domains = [var.custom_domain]
+  }
+}
+
+# Output the Cloud Run service URL
+output "cloud_run_service_url" {
+  value = google_cloud_run_service.default.status[0].url
+}
