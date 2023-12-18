@@ -1,10 +1,8 @@
 terraform {
   cloud {
     organization = "Pitangaville"
-    hostname = "app.terraform.io" # Optional; defaults to app.terraform.io
-
     workspaces {
-      project = "quest"
+      name = "quest"
     }
   }
 }
