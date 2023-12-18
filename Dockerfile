@@ -10,8 +10,9 @@ COPY package*.json ./
 # Install app dependencies
 RUN npm install
 
-# Bundle app source
-COPY src/ .
+# Create src directory and copy app source
+RUN mkdir src
+COPY src/ ./src/
 COPY bin/ bin/
 
 # Build stage for nginx with supervisord
