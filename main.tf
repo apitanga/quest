@@ -59,7 +59,7 @@ resource "google_cloud_run_service" "default" {
 variable "custom_domain" {
   description = "The custom domain for the Cloud Run service"
   type        = string
-  name        = "pomo.dev"
+  default     = "pomo.dev"
 }
 
 resource "google_cloud_run_domain_mapping" "default" {
