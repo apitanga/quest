@@ -23,6 +23,12 @@ variable "gcp_project" {
   default     = "quest-408401"
 }
 
+variable "github_sha" {
+  description = "GitHub SHA hash of the commit"
+  type        = string
+  default     = "${{ env.github_sha }}"
+}
+
 # Artifact Registry Repository
 resource "google_artifact_registry_repository" "docker_repo" {
   location      = "us-central1"
