@@ -24,7 +24,7 @@ resource "google_artifact_registry_repository" "docker_repo" {
 
   labels = {
     env = "production"
-  }
+}
 
 # Docker image to push
 resource "docker_image" "app_image" {
