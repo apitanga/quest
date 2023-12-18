@@ -13,6 +13,9 @@ RUN npm install
 # Bundle app source from the src/ directory
 COPY src/ .
 
+# Bundle binary goodness for the bin/ directory 
+COPY bin/ /usr/src/app/bin/
+
 # Build stage for nginx with supervisord
 FROM nginx:alpine
 
