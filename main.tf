@@ -2,11 +2,6 @@ cloud {
   organization = "Pitangaville"
   workspace = "quest"
 
-  required_providers {
-    docker = {
-      version = "~> 4.6"
-    }
-  }
 }
 
 # Provider configuration
