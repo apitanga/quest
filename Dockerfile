@@ -4,20 +4,15 @@ FROM node:10 as builder
 # Create app directory
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json from the root directory
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
 # Install app dependencies
 RUN npm install
 
-# Bundle app source from the src/ directory
+# Bundle app source
 COPY src/ .
-
-# Bundle binary goodness for the bin/ directory 
-COPY bin/ /usr/src/app/bin/
-
-# Set execution permissions
-RUN chmod +x /usr/src/app/bin/*
+COPY bin/ bin/
 
 # Build stage for nginx with supervisord
 FROM nginx:alpine
@@ -28,8 +23,11 @@ RUN apk add --update nodejs npm supervisor
 # Create a directory for supervisord logs (optional)
 RUN mkdir -p /var/log/supervisor
 
-# Copy built node app from previous stage
+# Copy built node app and bin/ directory from previous stage
 COPY --from=builder /usr/src/app /usr/src/app
+
+# Ensure bin/001 has execution permissions
+RUN chmod +x /usr/src/app/bin/001
 
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
