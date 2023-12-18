@@ -39,26 +39,3 @@ resource "google_artifact_registry_repository" "docker_repo" {
     app = "quest"
   }
 }
-
-# Docker image to push
-resource "docker_image" "app_image" {
-  name  = "gcr.io/${var.gcp_project}/${google_artifact_registry_repository.docker_repo.repository_id}:${var.github_sha}"
-
-  build_context = "."
-  filename      = "Dockerfile"
-
-  depends_on = [
-    google_artifact_registry_repository.docker_repo,
-  ]
-}
-
-# Push the image to the repository
-resource "google_artifact_registry_repository_image" "pushed_image" {
-  location      = google_artifact_registry_repository.docker_repo.location
-  repository_id = google_artifact_registry_repository.docker_repo.repository_id
-  name         = docker_image.app_image.name
-
-  depends_on = [
-    docker_image.app_image,
-  ]
-}
