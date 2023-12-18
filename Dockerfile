@@ -5,6 +5,8 @@ FROM node:10 as builder
 WORKDIR /usr/src/app
 
 # Install app dependencies
+# NOTE: You might need to COPY package.json and package-lock.json before this step
+COPY src/package*.json ./
 RUN npm install
 
 # Bundle app source
@@ -13,8 +15,8 @@ COPY src/ .
 # Build stage for nginx with supervisord
 FROM nginx:alpine
 
-# Install supervisord
-RUN apk add --no-cache supervisor
+# Install Node.js and supervisord
+RUN apk add --update nodejs npm supervisor
 
 # Create a directory for supervisord logs (optional)
 RUN mkdir -p /var/log/supervisor
