@@ -1,14 +1,10 @@
-terraform {
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "Pitangaville"
-    workspaces {
-      name = "quest"
-    }
-    required_providers {
-      docker = {
-    version = "~> 4.6"
-    }
+cloud {
+  organization = "Pitangaville"
+  workspace = "quest"
+
+  required_providers {
+    docker = {
+      version = "~> 4.6"
     }
   }
 }
