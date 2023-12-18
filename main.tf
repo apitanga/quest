@@ -23,4 +23,7 @@ resource "google_artifact_registry_repository" "docker_repo" {
   labels = {
     env = "production"
   }
+  # Add an output
+  output "url" {
+    value = self.url
 }
