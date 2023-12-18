@@ -13,9 +13,10 @@ provider "google" {
   project = "quest-408401"
   region = "us-central1"
 }
-provider "docker" {
-  source  = "hashicorp/docker"
-  version = "~> 4.6"
+required_providers {
+  docker = {
+    version = "~> 4.6"
+  }
 }
 
 # Artifact Registry Repository
