@@ -1,11 +1,8 @@
-# Use a Node base image
+# Use a Node base image for building the Node.js application
 FROM node:14 as builder
 
 # Create app directory
 WORKDIR /usr/src/app
-
-# Copy package.json and package-lock.json (if available)
-COPY src/package*.json ./
 
 # Install app dependencies
 RUN npm install
@@ -13,8 +10,14 @@ RUN npm install
 # Bundle app source
 COPY src/ .
 
-# Build stage for nginx
+# Build stage for nginx with supervisord
 FROM nginx:alpine
+
+# Install supervisord
+RUN apk add --no-cache supervisor
+
+# Create a directory for supervisord logs (optional)
+RUN mkdir -p /var/log/supervisor
 
 # Copy built node app from previous stage
 COPY --from=builder /usr/src/app /usr/src/app
@@ -22,8 +25,11 @@ COPY --from=builder /usr/src/app /usr/src/app
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Set the PORT environment variable to 8080
-ENV PORT 8080
+# Copy Supervisord configuration file
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Expose the port nginx is reachable on
+EXPOSE 8080
+
+# Start processes via supervisord
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
