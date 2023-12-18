@@ -42,7 +42,7 @@ resource "google_artifact_registry_repository" "docker_repo" {
 
 # Docker image to push
 resource "docker_image" "app_image" {
-  name  = "gcr.io/${gcp_project}/${google_artifact_registry_repository.docker_repo.repository_id}:${var.github_sha}"
+  name  = "gcr.io/${var.gcp_project}/${google_artifact_registry_repository.docker_repo.repository_id}:${var.github_sha}"
 
   build_context = "."
   filename      = "Dockerfile"
