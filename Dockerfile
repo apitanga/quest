@@ -1,5 +1,5 @@
 # Use a Node base image for building the Node.js application
-FROM node:14 as builder
+FROM node:10 as builder
 
 # Create app directory
 WORKDIR /usr/src/app
