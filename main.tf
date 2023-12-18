@@ -1,23 +1,19 @@
 terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+    }
+    docker = {
+      source = "kreuzwerker/docker"
+    }
+  }
+
   cloud {
     organization = "Pitangaville"
     workspaces {
       name = "quest"
     }
   }
-}
-
-required_providers {
-  docker = {
-    source = "kreuzwerker/docker"
-    version = "~> 3.0.1"
-  }
-}
-
-# Provider configuration
-provider "google" {
-  project = "quest-408401"
-  region = "us-central1"
 }
 
 # Artifact Registry Repository
