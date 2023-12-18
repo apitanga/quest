@@ -4,12 +4,13 @@ FROM node:10 as builder
 # Create app directory
 WORKDIR /usr/src/app
 
+# Copy package.json and package-lock.json from the root directory
+COPY package*.json ./
+
 # Install app dependencies
-# NOTE: You might need to COPY package.json and package-lock.json before this step
-COPY src/package*.json ./
 RUN npm install
 
-# Bundle app source
+# Bundle app source from the src/ directory
 COPY src/ .
 
 # Build stage for nginx with supervisord
