@@ -18,6 +18,10 @@ jobs:
         with: 
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
+      - name: Debug GITHUB_SHA
+        run: echo "GITHUB_SHA is $GITHUB_SHA"
+
+
       - name: Terraform Init
         env:
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
