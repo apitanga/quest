@@ -10,10 +10,9 @@ COPY package*.json ./
 # Install app dependencies
 RUN npm install
 
-# Create src directory and copy app source
-RUN mkdir src
+# Copy app source
 COPY src/ ./src/
-COPY bin/ bin/
+COPY bin/ ./src/bin/
 
 # Build stage for nginx with supervisord
 FROM nginx:alpine
@@ -24,11 +23,11 @@ RUN apk add --update nodejs npm supervisor
 # Create a directory for supervisord logs (optional)
 RUN mkdir -p /var/log/supervisor
 
-# Copy built node app and bin/ directory from previous stage
+# Copy built node app from previous stage
 COPY --from=builder /usr/src/app /usr/src/app
 
-# Ensure bin/001 has execution permissions
-RUN chmod +x /usr/src/app/bin/001
+# Ensure scripts in bin/ have execution permissions
+RUN chmod +x /usr/src/app/src/bin/*
 
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
