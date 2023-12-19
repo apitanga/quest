@@ -1,6 +1,9 @@
 # Use a Node base image for building the Node.js application
 FROM node:10 as builder
 
+# The secret :)
+ENV SECRET_WORD=TwelveFactor
+
 # Create app directory
 WORKDIR /usr/src/app
 
