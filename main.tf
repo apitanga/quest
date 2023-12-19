@@ -62,18 +62,18 @@ variable "custom_domain" {
   default     = "pomo.dev"
 }
 
-resource "google_cloud_run_domain_mapping" "default" {
-  location = "us-central1"
-  name     = var.custom_domain
-
-  metadata {
-    namespace = var.gcp_project
-}
-
-  spec {
-    route_name = google_cloud_run_service.default.name
-  }
-}
+#resource "google_cloud_run_domain_mapping" "default" {
+#  location = "us-central1"
+#  name     = var.custom_domain
+#
+#  metadata {
+#    namespace = var.gcp_project
+#}
+#
+#  spec {
+#    route_name = google_cloud_run_service.default.name
+#  }
+#}
 
 resource "google_compute_managed_ssl_certificate" "default" {
   name    = "my-ssl-cert"
