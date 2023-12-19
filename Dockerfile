@@ -1,9 +1,6 @@
 # Use a Node base image for building the Node.js application
 FROM node:10 as builder
 
-# The secret :)
-ENV SECRET_WORD=TwelveFactor
-
 # Create app directory
 WORKDIR /usr/src/app
 
@@ -19,6 +16,9 @@ COPY bin/ ./src/bin/
 
 # Build stage for nginx with supervisord
 FROM nginx:alpine
+
+# The secret :)
+ENV SECRET_WORD=TwelveFactor
 
 # Install Node.js and supervisord
 RUN apk add --update nodejs npm supervisor
