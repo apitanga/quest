@@ -31,6 +31,7 @@ Sent via email.
 ## Challenges and solutions
 
 ### Port mismatch
+
 Cloud Run requires apps to serve traffic on port '8080 or bust', but the app code (which I couldn't modify) expected traffic to be served on port 3000. I used a simple Nginx reverse proxy to bridge the port gap seamlessly.
 
 ### Directory Structure adjustment
