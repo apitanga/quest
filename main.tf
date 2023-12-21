@@ -49,8 +49,14 @@ resource "google_cloud_run_service" "default" {
     spec {
       containers {
         image = "gcr.io/${var.gcp_project}/quest:${var.github_sha}"
+        resources {
+          limits = {
+            cpu = "2"  # Allocate 2 CPUs
+            memory = "2Gi"  # Allocate 2GB of memory
+        }
       }
     }
+    min_instances = 2  # Ensure at least two instances are always running
   }
 }
 
