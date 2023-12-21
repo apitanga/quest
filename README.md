@@ -13,10 +13,10 @@ Welcome to the Cloud Quest Project. This isn't just another deployment task; it'
 - **Source Control**: Git
 
 ## Architecture
-In this project, GitHub Actions are the backbone of our CI/CD strategy, orchestrating the build and deployment. Docker wraps our application as a neat immutable, deployable artifact, while Terraform scripts lay down the infrastructure on Google Cloud Run. Nginx plays its part as a reverse proxy, and Supervisord keeps our containerized processes in line.
+In this project, GitHub Actions are the backbone of our CI/CD strategy, orchestrating the build and deployment. Docker wraps the node,js application as an immutable, deployable artifact, while Terraform scripts lay down the infrastructure on Google Cloud Run. Nginx plays its part as a reverse proxy, and Supervisord keeps our containerized processes in line.
 
 ## Setting Things Up
-Our integration and deployment routine is fully automated via GitHub Actions. It covers everything from Docker builds to pushing images to the container registry, with Terraform handling the cloud infrastructure deployment.  You shuold be able to clone this repo, add your auth secrets and everything should Just Work.
+The integration and deployment routine is fully automated via GitHub Actions. It covers everything from Docker builds to pushing images to the container registry, with Terraform handling the cloud infrastructure deployment.  You shuold be able to clone this repo, add your auth secrets and everything should Just Work.
 
 ### Essential GitHub Secrets
 - **Google Cloud Auth (`GCP_SA_KEY`)**: Our key to the Google Cloud kingdom.
@@ -38,7 +38,7 @@ Cloud Run requires apps to serve traffic on port '8080 or bust', but the app cod
 App expected the binary file in a relative path (bin/) while repo presented both dirs at same hierachy level. A bit of Dockerfile magic ensured our app found its binaries right where it expected them.
 
 ### TLS
-Thanks to Cloud Run, we handled SSL/TLS like it's no big deal.  This was one the key reasons why I chose Cloud Run here.
+Thanks to Cloud Run, I handled the SSL/TLS requirement like it's no big deal.  This was one the key reasons why I chose Cloud Run here.
 
 ### Supervisord: Process watchdog
 Managing Docker processes like a boss.
