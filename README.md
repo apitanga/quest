@@ -26,7 +26,7 @@ The deployment process is automated through GitHub Actions, which handles the Do
 Verify the deployment by accessing the Cloud Run-provided application URL and testing the functionality through specified service endpoints.
 
 ### Project Endpoint
-Access the deployed application here: [https://my-service-65rjmtutpq-uc.a.run.app](https://my-service-65rjmtutpq-uc.a.run.app)
+Access the deployed application here: (sent via email)
 
 ## Challenges and Improvements
 
