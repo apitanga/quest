@@ -26,7 +26,7 @@ Our integration and deployment routine is fully automated via GitHub Actions. It
 Check out the application on the Cloud Run URL and give those service endpoints a run for their money.
 
 ### Project Endpoint
-Catch the live action here: [https://my-service-65rjmtutpq-uc.a.run.app](https://my-service-65rjmtutpq-uc.a.run.app)
+Sent via email.
 
 ## Challenges and solutions
 
