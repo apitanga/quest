@@ -30,10 +30,10 @@ Sent via email.
 
 ## Challenges and solutions
 
-### Port mismatch: Cloud Run requires apps to serve traffic on port '8080 or bust', but the app code (which I couldn't modify) expected traffic to be served on port 3000. I used Nginx to bridge the port gap seamlessly.
-
-### TLS: The Easy Way
+### TLS done The Easy Way
 Thanks to Cloud Run, we handled SSL/TLS like it's no big deal.
+
+### Port mismatch: Cloud Run requires apps to serve traffic on port '8080 or bust', but the app code (which I couldn't modify) expected traffic to be served on port 3000. I used Nginx to bridge the port gap seamlessly.
 
 ### Supervisord: Process watchdog
 Managing Docker processes like a boss.
