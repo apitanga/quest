@@ -38,6 +38,9 @@ Thanks to Cloud Run, we handled SSL/TLS like it's no big deal.
 ### Supervisord: Process watchdog
 Managing Docker processes like a boss.
 
+### test
+hello
+
 ### Directory Structure adjustment
 App expected the binary file in a relative path (bin/) while repo presented both dirs at same hierachy level. A bit of Dockerfile magic ensured our app found its binaries right where it expected them.
 
