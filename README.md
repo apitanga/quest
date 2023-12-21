@@ -28,7 +28,7 @@ Check out the application on the Cloud Run URL and give those service endpoints 
 ### Project Endpoint
 Catch the live action here: [https://my-service-65rjmtutpq-uc.a.run.app](https://my-service-65rjmtutpq-uc.a.run.app)
 
-## Overcoming Challenges
+## Challenges and solutions
 
 ### Port mismatch: Cloud Run requires apps to serve traffic on port '8080 or bust', but the app code (which I couldn't modify) expected traffic to be served on port 3000. I used Nginx to bridge the port gap seamlessly.
 
