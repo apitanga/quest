@@ -8,7 +8,7 @@ Welcome to the Cloud Quest Project. This isn't just another deployment task; it'
 - **Container Tech**: Docker
 - **Automated Pipelines**: GitHub Actions
 - **IaC**: Terraform
-- **Web Serving**: Nginx
+- **Reverse Proxy**: Nginx
 - **Process Supervision**: Supervisord
 - **Source Control**: Git
 
@@ -16,7 +16,7 @@ Welcome to the Cloud Quest Project. This isn't just another deployment task; it'
 In this project, GitHub Actions are the backbone of our CI/CD strategy, orchestrating the dance of build and deployment. Docker wraps our application in a neat container package, while Terraform scripts lay down the infrastructure tracks on Google Cloud Run. Nginx plays its part as a reverse proxy, and Supervisord keeps our processes in line.
 
 ## Setting Things Up
-Our deployment routine is a well-oiled machine, automated via GitHub Actions. It covers everything from Docker builds to pushing images to the container registry, with Terraform handling the cloud infrastructure deployment.
+Our integration and deployment routine is fully automated via GitHub Actions. It covers everything from Docker builds to pushing images to the container registry, with Terraform handling the cloud infrastructure deployment.
 
 ### Essential GitHub Secrets
 - **Google Cloud Auth (`GCP_SA_KEY`)**: Our key to the Google Cloud kingdom.
@@ -56,10 +56,13 @@ For state file security and team-friendly management.
 Enable github action path filters to prevent build being triggered on trivial changes (e.g readme updates)
 
 #### SSL with a Personal Touch
-A custom domain SSL to put our stamp on the web.
+A custom domain SSL to put a personal stamp on the endpoint.
 
-#### Logging and Monitoring: The Upgrade
+#### Logging and Monitoring/Alertying: The Upgrade
 Because knowing is half the battle.
+
+### Container Security Scanning
+Implement container scanning before deployment, prevent critical vulnerabilities from reaching production (i.e. public facing vulns).
 
 #### Secret-Keeping: Base64 Style
 Elevating our secret management game with base64 encoding and decoding.
