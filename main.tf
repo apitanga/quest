@@ -56,8 +56,9 @@ resource "google_cloud_run_service" "default" {
         }
       }
     }
-    min_instances = 2  # Ensure at least two instances are always running
+    
   }
+  min_instances = 2  # Ensure at least two instances are always running
 }
 }
 
