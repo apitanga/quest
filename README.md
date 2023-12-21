@@ -30,19 +30,17 @@ Sent via email.
 
 ## Challenges and solutions
 
-### TLS done The Easy Way
-Thanks to Cloud Run, we handled SSL/TLS like it's no big deal.
-
-### Port mismatch: Cloud Run requires apps to serve traffic on port '8080 or bust', but the app code (which I couldn't modify) expected traffic to be served on port 3000. I used Nginx to bridge the port gap seamlessly.
-
-### Supervisord: Process watchdog
-Managing Docker processes like a boss.
-
-### test
-hello
+### Port mismatch
+Cloud Run requires apps to serve traffic on port '8080 or bust', but the app code (which I couldn't modify) expected traffic to be served on port 3000. I used a simple Nginx reverse proxy to bridge the port gap seamlessly.
 
 ### Directory Structure adjustment
 App expected the binary file in a relative path (bin/) while repo presented both dirs at same hierachy level. A bit of Dockerfile magic ensured our app found its binaries right where it expected them.
+
+### TLS
+Thanks to Cloud Run, we handled SSL/TLS like it's no big deal.  This was one the key reasons why I chose Cloud Run here.
+
+### Supervisord: Process watchdog
+Managing Docker processes like a boss.
 
 ### Load Balancing, simplified
 Started with Cloud Run's own load balancing. I've set the number of replicas to 1 (to reduce costs) but could scale out as needed behind the same service endpoint. Neat, but we've got grander plans.
