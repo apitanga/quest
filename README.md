@@ -8,7 +8,7 @@ This project is a technical showcase in deploying a web application using cloud 
 - **Containerization**: Docker
 - **CI/CD**: GitHub Actions
 - **Infrastructure as Code**: Terraform
-- **Web Server**: Nginx
+- **Reverse Proxy**: Nginx
 - **Process Management**: Supervisord
 - **Version Control**: Git
 
@@ -50,16 +50,22 @@ Initially achieved by leveraging Cloud Run's inherent load balancing capabilitie
 #### Use of Terraform Cloud
 Chosen for managing the Terraform state file, enhancing security and collaboration.
 
+#### Ci/CD first design
+Made archutectural choice to prioritize defining a ci/CD pipeline as code, to facilitate future developement (hypothetical) and to demonstrate best practices.
+
 ### Future Enhancements
 
-#### Custom Domain and SSL
-Plans to introduce a custom domain with SSL for enhanced security and professional web presence.
+### Implement path filters
+Enable github action path filters to prevent build being triggered on trivial changes (e.g readme updates)
 
-#### Advanced Logging and Monitoring
-Implementing robust logging and monitoring solutions is on the agenda.
+#### Custom Domain and SSL
+Deploy a custom domain with SSL for enhanced security and professional web presence.
+
+#### Advanced Logging and Monitoring/Alerting
+Implement robust logging and monitoring/alerting configurations.
 
 #### Secure Handling of Secrets
-Intends to incorporate base64 encoding and decoding for managing GitHub secrets for increased security.
+Incorporate base64 encoding and decoding for managing GitHub secrets for increased security.
 
 #### Enhanced Load Balancing
 Future improvements will explore the use of Google Cloud Load Balancer for more advanced load balancing options.
